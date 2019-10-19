@@ -1,0 +1,22 @@
+kind: pipeline
+type: docker
+name: default
+
+platform:
+  os: linux
+  arch: arm
+
+trigger:
+  branch:
+    - master
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      repo: matthewoden/drone-kubernetes-arm
+      dockerfile: ./Dockerfile
